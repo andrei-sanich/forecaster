@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Forecaster{% endblock %}
+
+{% block page_content %}
+
+<div class="col-md-4">
+    <form action="{{ url_for('main.counting_results') }}">
+        Подсчет результатов прогнозов<br>
+        <input type="submit" value="Запуск"/>
+    </form>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script 
+    src="{{ url_for('static', filename='js/jquery.min.js') }}">
+</script>
+
+<script
+    src="{{ url_for('static', filename='js/bootstrap.min.js') }}">
+</script>
+
+{% endblock %}

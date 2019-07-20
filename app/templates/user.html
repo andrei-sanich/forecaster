@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Forecaster - {{ user.username }}{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <img class="img-rounded profile-thumbnail" src="{{ user.gravatar(size=256) }}">
+    <div class="profile-header">
+        <h1>{{ user.username }}</h1>
+        {% if user.name or user.location %}
+        <p>
+            {% if user.name %}{{ user.name }}<br>{% endif %}
+            {% if user.location %}
+                from <a href="http://maps.google.com/?q={{ user.location }}">{{ user.location }}</a><br>
+            {% endif %}
+        </p>
+        {% endif %}
+        {% if current_user.is_administrator() %}
+        <p><a href="mailto:{{ user.email }}">{{ user.email }}</a></p>
+        {% endif %}
+        {% if user.about_me %}<p>{{ user.about_me }}</p>{% endif %}
+        <p>Member since {{ moment(user.member_since).format('L') }}. Last seen {{ moment(user.last_seen).fromNow() }}.</p>
+        <p>
+            {% if user == current_user %}
+            <a class="btn btn-default" href="{{ url_for('.edit_profile') }}">Edit Profile</a>
+            {% endif %}
+            {% if current_user.is_administrator() %}
+            <a class="btn btn-danger" href="{{ url_for('.edit_profile_admin', id=user.id) }}">Edit Profile [Admin]</a>
+            {% endif %}
+        </p>
+    </div>
+</div>
+
+<div class="container">
+    <div class="table-responsive"> 
+        <table class="table table-bordered">
+            {% for match in matches %}
+                <tbody>
+                    <tr>
+                        <td>{{ match.Match.timestamp }}</td>
+                        <td>{{ match.Match.home_team }}</td>
+                        <td>{{ match.Match.guest_team }}</td>
+                        <td>{{ match.Forecast.home_goal }}</td>
+                        <td>{{ match.Forecast.guest_goal }}</td>
+                    </tr>
+                </tbody>
+            {% endfor %}
+        </table>
+    </div> 
+</div>
+{% endblock %}

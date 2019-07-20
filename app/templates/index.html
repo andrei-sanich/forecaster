@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+{% block title %}Forecaster{% endblock %}
+
+
+{% block page_content %}
+<div class="container">
+    <div class="table-responsive"> 
+        <table class="table table-bordered">
+            {% for match in matches %}
+                <tbody>
+                    <tr>
+                        <td>{{ match.timestamp }}</td>
+                        <td>{{ match.home_team }}</td>
+                        {% if current_user.is_authenticated %}
+                            <td><a id="add" href="myModal{{ match.id }}" data-toggle="modal" data-target="#myModal{{ match.id }}">
+                                Сделать прогноз
+                                </a>
+                            </td>
+                        {% else %}
+                             <td><a href="{{ url_for('auth.login') }}">
+                                Сделать прогноз
+                                </a>
+                            </td>
+                        {% endif %}  
+                        <td>{{ match.guest_team }}</td>
+                        <td>{{ match.league }}</td>
+                    </tr>
+                </tbody>
+                    </div> 
+        <div class="modal" id="myModal{{ match.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Ваш прогноз</h4>
+                    </div>
+            <form id="add_forecast_{{ match.id }}" action='/' role="form" name="add_forecast">
+                <div class="modal-body">
+                    <div class="list-group list-group-horizontal">
+                        <span class="list-group-item">{{ match.home_team }}</span>
+                            <input 
+                                id="home_goal{{ match.id }}"
+                                class="list-group-item"
+                                value=""
+                                size="3"
+                                maxlength="2"
+                                type="text"
+                                name="home_team">
+                            <input
+                                id="guest_goal{{ match.id }}"
+                                class="list-group-item"
+                                value=""
+                                size="3"
+                                maxlength="2"
+                                type="text"
+                                name="guest_team">
+                        <span class="list-group-item">{{ match.guest_team }}</span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                    <button type="submit" class="btn btn-primary" onclick="get_forecast('{{ match.id }}')">Сохранить</button>
+                </div>
+            </form>
+                </div>
+            </div>
+        </div>
+            {% endfor %}
+        </table>
+</div>
+{% endblock %}
+{% block scripts %}
+
+<script 
+    src="{{ url_for('static', filename='js/jquery.min.js') }}">
+</script>
+
+<script 
+    src="{{ url_for('static', filename='js/jquery.validate.min.js') }}">
+</script>
+
+<script
+    src="{{ url_for('static', filename='js/bootstrap.min.js') }}">
+</script>
+
+<script
+    src="{{ url_for('static', filename='js/validate_form.js') }}">
+</script>
+
+<script
+    src="{{ url_for('static', filename='js/get_forecast.js') }}">
+</script>
+
+{% endblock %}

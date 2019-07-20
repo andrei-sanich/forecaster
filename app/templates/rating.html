@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Прогнозёр{% endblock %}
+
+{% block page_content %}
+<div class="table-responsive"> 
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Никнэйм</th>
+                <th>Количество прогнозов</th>
+                <th>Очки</th>
+            </tr>
+        </thead>
+        {% for rating in ratings %}
+            <tbody>
+                <tr>
+                    <td>{{ rating.username }}</td>
+                    <td>{{ rating.counter }}</td>
+                    <td>{{ rating.points }}</td>
+                </tr>
+            </tbody>
+        {% endfor %}
+    </table>
+</div> 
+{% endblock %}

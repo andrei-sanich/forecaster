@@ -1,0 +1,64 @@
+.profile-thumbnail {
+    position: absolute;
+}
+.profile-header {
+    min-height: 260px;
+    margin-left: 280px;
+}
+
+/*.matches {
+/*  width: 700px;
+}
+
+
+.match-nav {
+	display: inline-block; /*Задаем блочно-строчное отображение*/
+/*  	background:#F0F8FF;
+  	width: 180px; /*задаем ширину блока*/
+/*        }
+ 
+        .string {
+         background:#F0F8FF;	
+         text-align: center; /*Равняем текст по-горизонтали*/
+/*        }
+
+.forecast {
+	display: inline-block; /*Задаем блочно-строчное отображение*/
+/*  	width: 100px; /*задаем ширину блока*/
+/*        }
+ 
+        .string {
+         text-align: center; /*Равняем текст по-горизонтали
+        }*/
+/*
+
+.add_forecast{
+  width: 750px;	
+  padding:10px;
+  border:2px solid #3498db;
+  border-radius:15px;
+}
+*/
+.list-group-horizontal .list-group-item
+{
+  display: inline-block;
+}
+.list-group-horizontal .list-group-item
+{
+  margin-bottom: 0;
+  margin-left:-4px;
+  margin-right: 0;
+  border-right-width: 0;
+}
+.list-group-horizontal .list-group-item:first-child
+{
+  border-top-right-radius:0;
+  border-bottom-left-radius:4px;
+}
+.list-group-horizontal .list-group-item:last-child
+{
+  border-top-right-radius:4px;
+  border-bottom-left-radius:0;
+  border-right-width: 1px;
+}
+

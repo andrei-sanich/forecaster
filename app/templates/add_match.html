@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Forecaster{% endblock %}
+
+{% block page_content %}
+
+<div class="col-md-4">
+    {{ wtf.quick_form(match_form) }}
+</div>
+
+{% endblock %}
+{% block scripts %}
+
+<script 
+    src="{{ url_for('static', filename='js/jquery.min.js') }}">
+</script>
+
+<script
+    src="{{ url_for('static', filename='js/bootstrap.min.js') }}">
+</script>
+
+<script
+    src="{{ url_for('static', filename='js/selection_leagues_teams.js') }}">
+</script>
+
+{% endblock %}
